@@ -5,12 +5,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/me", userRoutes);
+app.use("/", userRoutes);
 
-app.use((req, res) => {
-  res.status(404).json({ status: "error", message: "Endpoint not found" });
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .json({ status: "success", message: "Welcome to Salim's API" });
 });
 
-// Start server on single port
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
